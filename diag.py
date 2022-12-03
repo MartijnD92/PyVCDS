@@ -115,7 +115,8 @@ else:
 if args.bits:
   raise NotImplementedError("Dynamic bitrate selection is not yet supported")
 
-sock = can.interface.Bus(channel=bus, bustype='socketcan')
+# sock = can.interface.Bus(channel=bus, bustype='socketcan')
+sock = can.interface.Bus(bustype='pcan', channel='PCAN_USBBUS1', bitrate=500000)
 
 with obd2.OBD2Interface(sock) as obd: #get the VIN using OBD2.
   vin = obd.readVIN()
